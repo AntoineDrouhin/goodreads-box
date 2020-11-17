@@ -1,6 +1,7 @@
 import xml from 'fast-xml-parser'
 import he from 'he'
 import got from 'got'
+import { ensureArray } from './type-utils'
 
 export default class Goodreads {
 
@@ -56,8 +57,10 @@ export default class Goodreads {
         },
       })
       .text()
+
     const reviewList: Goodreads.ReviewList = xml.parse(res)
-    const reviews = reviewList.GoodreadsResponse.reviews.review
+    // reviews.review can be an array or an item 
+    const reviews = ensureArray(reviewList.GoodreadsResponse.reviews.review)
     return reviews
   }
 

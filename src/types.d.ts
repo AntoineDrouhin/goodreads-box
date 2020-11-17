@@ -19,7 +19,7 @@ declare namespace Goodreads {
   interface ReviewList {
     GoodreadsResponse: {
       reviews: {
-        review: Review[];
+        review: Review[] | Review;
       };
     };
   }
